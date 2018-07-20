@@ -4,7 +4,6 @@
  */
 'use strict';
 const webdriverio = require('webdriverio');
-const { Builder, By, Key, promise, until } = require('selenium-webdriver');
 
 module.exports = {
     path: '/test',

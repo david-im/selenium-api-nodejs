@@ -17,8 +17,6 @@ app.use(cors());
 const apiRouterRegister = require('./middleware/router-register')('./api', '.js');
 app.use(apiRouterRegister);
 
-const selenium = require('./middleware/selenium');
-
 // Start the server
 app.listen(PORT, () => {
     console.log(`앱이 열려있는 포트는 다음과 같습니다. : ${PORT}`);
