@@ -1,6 +1,6 @@
 selenium-api-nodejs
 
-##Getting Start
+## Getting Start
 1. Node.js 패키지 설치
 
         npm i
@@ -13,13 +13,13 @@ selenium-api-nodejs
 
         node app.js
 
-##환경변수
+## 환경변수
 
 DRIVER_COUNT : 해당 서비스에서 사용할 Driver 개수(default: 5)
 
 HEADLESS : 해당 서비스의 드라이버들이 Headless모드로 사용될건지 여부(default: true)
 
-##도커 빌드
+## 도커 빌드
 
     sudo docker build -t selenium-api-nodejs:0.0.1
 
