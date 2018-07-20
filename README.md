@@ -27,7 +27,7 @@ PORT : API가 동작할 PORT(default: 8080)
 
 ## 도커 실행
 
-    sudo docker run -e DRIVER_COUNT=5 -e HEADLESS=true selenium-api-nodejs:0.0.1
+    sudo docker run --name selenium-api-nodejs -e DRIVER_COUNT=5 -e HEADLESS=true selenium-api-nodejs:0.0.1
     
 ## 테스트
 
