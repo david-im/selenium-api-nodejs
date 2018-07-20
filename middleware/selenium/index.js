@@ -4,18 +4,19 @@ const isHeadless = (process.env.HEADLESS === 'true') || true; // 이 서비스�
 
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const drivers = [];
+
+const drivers = []; // 드라이버 목록을 담을 Array 초기화
 
 // driverCount만큼 driver생성
 for (let i = 0; i < driverCount; i++) {
-    const driver = new webdriver.Builder().forBrowser('chrome');
+    const driver = new webdriver.Builder().forBrowser('chrome'); // 크롬 브라이저로 드라이버 설정
 
     if(isHeadless) {
         driver.setChromeOptions(new chrome.Options().addArguments('--headless')) //실제 GUI 브라우저를 안쓰고 처리
     }
     const driverInstance = driver.build();
 
-    driverInstance.id = i + 1;
+    driverInstance.id = i + 1; // 드라이버에 id 부여
     driverInstance.isReady = true; // 이 드라이버가 쉬고있는지 isReady라는 변수 설정
     drivers.push(driverInstance);
 }
