@@ -21,6 +21,6 @@ for (let i = 0; i < driverCount; i++) {
 }
 
 module.exports = {
-    readyDrivers: () => drivers.filter(driver => driver.isReady),
-    findReadyDriver: () => drivers.find(driver => driver.isReady)
+    readyDrivers: () => drivers.filter(driver => driver.isReady), // isReady가 true인 Array return
+    findReadyDriver: () => drivers.find(driver => driver.isReady) // isReady가 true인 것 중 맨앞에 하나 return
 };
