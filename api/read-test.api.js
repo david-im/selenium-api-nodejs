@@ -3,7 +3,9 @@
  * 셀레니움 GET 테스트 API
  */
 'use strict';
-const webdriverio = require('webdriverio');
+const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const { Builder, By, Key, promise, until } = require('selenium-webdriver');
 
 module.exports = {
     path: '/test',
@@ -15,28 +17,24 @@ module.exports = {
 
 function service(_request, _response, next) {
 
-    // 도커로 selenium-chrome 컨테이너를 띄워 127.0.0.1:4444 로 사용할때 코드
-    const options = {
-        desiredCapabilities: {
-            browserName: 'chrome'
-        }
-    };
-    const client = webdriverio.remote(options);
+    const driver = new webdriver.Builder()
+        .forBrowser('chrome')
+        // .setChromeOptions(new chrome.Options().addArguments('--headless')) //실제 GUI 브라우저를 안쓰고 처리
+        .build();
 
-    client
-        .init()
-        .url('https://learn.visualregressiontesting.com/')
-        .setValue('#mce-EMAIL', 'test@test.com')
-        .submitForm('#mc-embedded-subscribe-form')
-        .getUrl()
-        .then(url => {
-            console.log('URL is: ' + url);
-            _response.json({
-                url: url
-            })
-        })
-        .catch(error => next(error))
-        .end();
+    driver.get('http://www.bsidesoft.com/hika/wp/2196/test1.html').then(() => {
+
+        return driver.findElement(By.id('test1')).getText()
+    }).then(result => {
+        console.log(result);
+        _response.json({
+            result: result
+        });
+
+        driver.close();
+    }).catch(error => {
+        next(error);
+    });
 }
 
 function validator(_request, _response, next) {
