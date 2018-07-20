@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
+// 에러처리 편하게 하려고 만든 Extender 사용
 const errorResponseExtender = require('./middleware/error.extender');
 app.use(errorResponseExtender);
 
+// API추가 쉽게하려고 만든 Register 사용
 const apiRouterRegister = require('./middleware/router-register')('./api', '.js');
 app.use(apiRouterRegister);
 
