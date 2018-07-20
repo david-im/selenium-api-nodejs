@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
+const errorResponseExtender = require('./middleware/error.extender');
+app.use(errorResponseExtender);
+
 const apiRouterRegister = require('./middleware/router-register')('./api', '.js');
 app.use(apiRouterRegister);
 
