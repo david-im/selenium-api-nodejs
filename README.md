@@ -1,13 +1,29 @@
-###Connecting PostgreSQL Client using the Proxy Docker Image
-PostgreSQL
+selenium-api-nodejs
 
-    docker run --name cloud-sql-proxy-treasurney -d -v /cloudsql:/cloudsql -v /d/key/treasurney:/config -p 5432:5432 gcr.io/cloudsql-docker/gce-proxy:1.11 /cloud_sql_proxy -instances=ntcon-dev:asia-northeast1:treasurney=tcp:0.0.0.0:5432 -credential_file=/config/treasurney-cloud-proxy.json
+##Getting Start
+1. Node.js 패키지 설치
 
-MySQL
+        npm i
     
-    docker run --name cloud-sql-proxy-treasurney-mysql -d -v /cloudsql:/cloudsql -v /d/key/treasurney:/config -p 3306:3306 gcr.io/cloudsql-docker/gce-proxy:1.11 /cloud_sql_proxy -instances=ntcon-dev:asia-northeast1:treasurney-mysql=tcp:0.0.0.0:3306 -credential_file=/config/treasurney-cloud-proxy.json
-    
-#### PostGIS Extension 설정
-적용할 데이터베이스에서 아래 Query문 실행
+2. 실행
 
-    CREATE EXTENSION postgis;
+        npm start
+        
+      또는
+
+        node app.js
+
+##환경변수
+
+DRIVER_COUNT : 해당 서비스에서 사용할 Driver 개수(default: 5)
+
+HEADLESS : 해당 서비스의 드라이버들이 Headless모드로 사용될건지 여부(default: true)
+
+##도커 빌드
+
+    sudo docker build -t selenium-api-nodejs:0.0.1
+
+## 도커 실행
+
+    sudo docker run -e DRIVER_COUNT=5 -e HEADLESS=true selenium-api-nodejs:0.0.1
+    
